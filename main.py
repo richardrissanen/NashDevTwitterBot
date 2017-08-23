@@ -25,7 +25,7 @@ event_listings = parsed_feed[listings_key]
 
 # Prints Title, Url and start of events for the current day
 for event in event_listings:
-  start = event[start_key].replace('T', '').replace('-05:00', '-0500').replace('-06:00', '-0600') # -06:00 I believe was bad data
+  start = event[start_key].replace('T', '').replace('-05:00', '-0500').replace('-06:00', '-0600') # -06:00 was bad data
   start_time = datetime.strptime(start, "%Y-%m-%d%H:%M:%S%z")
 
   if start_time > current_time and start_time < end_of_day:
