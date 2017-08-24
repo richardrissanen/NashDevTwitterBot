@@ -14,7 +14,7 @@ event_listings = Events.get()
 current_time = Timer.current_time()
 end_of_day = Timer.end_of_day()
 
-# Prints Title, Url and start of events for the current day
+# Iterates over events compares start time to eod and current time and posts the events to twitter
 for event in event_listings:
   start = event[start_key].replace('T', '').replace('-05:00', '-0500').replace('-06:00', '-0600') # -06:00 was bad data
   start_time = datetime.strptime(start, "%Y-%m-%d%H:%M:%S%z")
