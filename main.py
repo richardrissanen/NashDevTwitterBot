@@ -1,27 +1,18 @@
-import feedparser
-from datetime import datetime, timezone, timedelta, date
-
+from datetime import datetime
 from config import App
+from libs import Twitter, Events, Timer
 
 # Grabs config
-events_url = App.config('events_url')
-
-listings_key = App.config('parser', 'listings_key')
 url_key = App.config('parser', 'url_key')
 start_key = App.config('parser', 'start_key')
 title_key = App.config('parser', 'title_key')
 
-timezone_offset = App.config('time', 'timezone_offset')
-end_of_day_offset = App.config('time', 'end_of_day_offset')
+# Fetches and parses Feed
+event_listings = Events.get()
 
-delta = timedelta(hours=timezone_offset)
-tz = timezone(delta)
-current_time = datetime.now(tz)
-end_of_day = datetime.now(tz) + timedelta(hours=end_of_day_offset)
-
-# Parses Feed
-parsed_feed = feedparser.parse(events_url)
-event_listings = parsed_feed[listings_key]
+# CDT
+current_time = Timer.current_time()
+end_of_day = Timer.end_of_day()
 
 # Prints Title, Url and start of events for the current day
 for event in event_listings:
@@ -29,7 +20,9 @@ for event in event_listings:
   start_time = datetime.strptime(start, "%Y-%m-%d%H:%M:%S%z")
 
   if start_time > current_time and start_time < end_of_day:
-    print(event[title_key])
-    print(event[url_key])
-    print(start_time)
-    print(current_time)
+    title = event[title_key]
+    url = event[url_key]
+
+    message = start_time.strftime('%I:%M%p') + ' ' + title + ' ' + url
+
+    Twitter.post(message)

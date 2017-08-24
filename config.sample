@@ -10,7 +10,13 @@ class App:
     'time': {
       'timezone_offset': -5,
       'end_of_day_offset': +15, # this assumes the script runs at 9am
-    }
+    },
+    'twitter': {
+      'consumer_key': '',
+      'consumer_secret': '',
+      'access_token': '',
+      'access_token_secret': '',
+    },
   }
 
   @staticmethod
