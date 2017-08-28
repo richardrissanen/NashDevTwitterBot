@@ -32,6 +32,14 @@ class Timer:
     return datetime.now(tz) + timedelta(hours=Timer.__end_of_day_offset)
 
   @staticmethod
+  def get_datetime(start_time_string):
+    return datetime.strptime(start_time_string, "%Y-%m-%d%H:%M:%S%z")
+
+  @staticmethod
+  def sanitize(start_time_string):
+    return start_time_string.replace('T', '').replace('-05:00', '-0500').replace('-06:00', '-0600') # -06:00 == bad data
+
+  @staticmethod
   def __timezone():
     delta = timedelta(hours=Timer.__timezone_offset)
     return timezone(delta)
@@ -46,6 +54,10 @@ class Twitter:
   __consumer_secret = App.config('twitter', 'consumer_secret')
   __access_token = App.config('twitter', 'access_token')
   __access_token_secret = App.config('twitter', 'access_token_secret')
+
+  @staticmethod
+  def create_message(start_datetime, title, url):
+    return start_datetime.strftime('%I:%M%p') + ' ' + title + ' ' + url
 
   @staticmethod
   def post(message):

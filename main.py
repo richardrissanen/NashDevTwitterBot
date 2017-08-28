@@ -16,13 +16,14 @@ end_of_day = Timer.end_of_day()
 
 # Iterates over events compares start time to eod and current time and posts the events to twitter
 for event in event_listings:
-  start = event[start_key].replace('T', '').replace('-05:00', '-0500').replace('-06:00', '-0600') # -06:00 was bad data
-  start_time = datetime.strptime(start, "%Y-%m-%d%H:%M:%S%z")
+  start_time_string = event[start_key]
+  start_time_string = Timer.sanitize(start_time_string)
+  start_datetime = Timer.get_datetime(start_time_string)
 
-  if start_time > current_time and start_time < end_of_day:
+  if start_datetime > current_time and start_datetime < end_of_day:
     title = event[title_key]
     url = event[url_key]
 
-    message = start_time.strftime('%I:%M%p') + ' ' + title + ' ' + url
+    message = Twitter.create_message(start_datetime, title, url)
 
     Twitter.post(message)
