@@ -1,6 +1,8 @@
 .DS_Store
 */.DS_Store
 
+config.py
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -100,4 +102,3 @@ ENV/
 
 # mypy
 .mypy_cache/
-

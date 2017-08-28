@@ -5,7 +5,7 @@ from setuptools import setup, find_packages
 
 REQUIREMENTS = [
     'feedparser',
-    'tweepy'
+    'tweepy',
 ]
 
 setup(
