@@ -7,7 +7,7 @@ events = Event.get_all()
 current_time = Timer.current_time()
 end_of_day = Timer.end_of_day()
 
-# Iterates over events compares start time to eod and current time and posts the events to twitter
+# Iterates over events, compares start time to eod and current time, and posts the events to twitter
 for event in events:
   event_start = event.start
 
