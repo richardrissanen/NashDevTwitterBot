@@ -2,15 +2,40 @@ from config import App
 
 import feedparser
 
-class Events:
+class Event:
 
   __url = App.config('events_url')
   __listings_key = App.config('parser', 'listings_key')
+  __url_key = App.config('parser', 'url_key')
+  __start_key = App.config('parser', 'start_key')
+  __title_key = App.config('parser', 'title_key')
+
+  def __init__(self, start, title, url):
+    self.start = start
+    self.title = title
+    self.url = url
+
 
   @staticmethod
-  def get():
-    parsed_feed = feedparser.parse(Events.__url)
-    return parsed_feed[Events.__listings_key]
+  def get_all():
+    parsed_feed = feedparser.parse(Event.__url)
+    listings = parsed_feed[Event.__listings_key]
+
+    events_array = []
+
+    for listing in listings:
+      start_time_string = listing[Event.__start_key]
+      start_time_string = Timer.sanitize(start_time_string)
+      start_datetime = Timer.get_datetime(start_time_string)
+
+      title = listing[Event.__title_key]
+      url = listing[Event.__url_key]
+
+      new_event = Event(start_datetime, title, url)
+
+      events_array.append(new_event)
+
+    return events_array
 
 ###
 
