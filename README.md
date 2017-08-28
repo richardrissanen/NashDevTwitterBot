@@ -28,9 +28,9 @@ Yes, cal.nashvl.org contains both events from Meetup.com and anyone may contribu
 * [ ] Write docs
 * [ ] Write tests
 * [ ] Implement
-  * [ ] Parse Feed
-  * [ ] Define Structure
-  * [ ] Filter listings
+  * [X] Parse Feed
+  * [X] Define Structure
+  * [X] Filter listings
   * [ ] Truncate for Twitter
-  * [ ] Authorize via Tweepy
-  * [ ] Tweet via Tweepy
+  * [X] Authorize via Tweepy
+  * [X] Tweet via Tweepy
