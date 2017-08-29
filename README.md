@@ -1,20 +1,6 @@
 # NashDev Twitter Bot
 
-Currently the NashDev slack channel's events calendar which is tied integrated with Twitter is posted manually. This is impressive but seems quite unsustainable. Thus an automated solution should be built in order to replace the current method.
-
-## Questions
-
-* Is the Twitter integration with Slack the current solution?
-Yes, at the moment, the Twitter integration with Slack fires the Slack post after being manually tweeted from TweetDeck.
-
-* How are events currently sourced?
-All events are sourced from cal.nashvl.org. I believe that another one of my coworkers manually loads data from Meetup.com from time to time, but most of the events are manually created by their organizers.
-
-* Where from?
-Meetup.com or single organizers or conferences
-
-* Is there a single place that contains all events?
-Yes, cal.nashvl.org contains both events from Meetup.com and anyone may contribute.
+Automate posting events from cal.nashvl.org to Twitter
 
 ## Proposed Solution
 ![overview](https://user-images.githubusercontent.com/501822/27800820-96c16a6e-5fe0-11e7-919d-b7786bd35471.png)
@@ -34,3 +20,25 @@ Yes, cal.nashvl.org contains both events from Meetup.com and anyone may contribu
   * [ ] Truncate for Twitter
   * [X] Authorize via Tweepy
   * [X] Tweet via Tweepy
+
+## Installation on Heroku
+> Prerequisites: Twitter and Heroku Accounts, Heroku CLI is installed, you are logged into Heroku via Heroku CLI
+
+### Create Twitter App
+1. Visit [https://apps.twitter.com](https://apps.twitter.com)
+2. Login
+3. Create a new app
+4. Within your app visit the "Keys and Access Tokens" tab
+5. Generate your access token and access token secret
+6. Leave the page open, you will need it later
+
+### Push to Heroku
+1. Pull down nashDevTwitterBot
+2. cd into nashDevTwitterBot
+3. Ensure nashDevTwitterBot is initialized as a git repo. If not run `git init` within nashDevTwitterBot
+4. Login into Heroku via a browser and create a new app
+5. Add a git remote for the Heroku app within nashDevTwitterBot **Example:** `heroku git:remote -a nash-dev-twitter-bot`
+6. Push source to Heroku `git push heroku master`
+7. Visit your Heroku App's "Settings" tab
+8. Locate the section "Config Variables"
+9. Add config variables for CONSUMER_KEY, CONSUMER_SECRET, ACCESS_TOKEN, and ACCESS_TOKEN_SECRET. The values of these variables should be copied from the Twitter page you left open in step 6 of "Create Twitter App"
