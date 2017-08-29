@@ -39,6 +39,23 @@ Automate posting events from cal.nashvl.org to Twitter
 4. Login into Heroku via a browser and create a new app
 5. Add a git remote for the Heroku app within nashDevTwitterBot **Example:** `heroku git:remote -a nash-dev-twitter-bot`
 6. Push source to Heroku `git push heroku master`
-7. Visit your Heroku App's "Settings" tab
-8. Locate the section "Config Variables"
-9. Add config variables for CONSUMER_KEY, CONSUMER_SECRET, ACCESS_TOKEN, and ACCESS_TOKEN_SECRET. The values of these variables should be copied from the Twitter page you left open in step 6 of "Create Twitter App"
+
+### Configure Heroku Settings
+1. Visit your Heroku App's "Settings" tab
+2. Locate the section "Config Variables"
+3. Add config variables for CONSUMER_KEY, CONSUMER_SECRET, ACCESS_TOKEN, and ACCESS_TOKEN_SECRET. The values of these variables should be copied from the Twitter page you left open in step 6 of "Create Twitter App"
+
+### Add Scheduled Job
+1. Go to your Heroku App's "Resources" tab
+2. Locate the "Add-ons" section
+3. Within the "Add-ons" section search for "Heroku Scheduler"
+4. Confirm it as an Add-on
+5. Click on "Heroku Scheduler"
+6. Click "Add new job"
+7. In the textfield paste in `python3 main.py`
+8. Adjust "next due" to 14:00 UTC (9:00am CDT)
+9. Click save
+10. Test that everything is working by running `heorku run python3 main.py`
+11. If it worked congrats! If not contact me at email@richardrissanen.com
+
+Cheers.
