@@ -4,10 +4,12 @@ class App:
   __config = {
     'events_url': 'http://cal.nashvl.org/events.atom',
     'parser': {
+      'content_key': 'content',
+      'content_value': 'value',
       'listings_key': 'entries',
-      'url_key': 'link',
-      'title_key': 'title',
       'start_key': 'start_time',
+      'title_key': 'title',
+      'url_key': 'link',
     },
     'time': {
       'timezone_offset': -5,

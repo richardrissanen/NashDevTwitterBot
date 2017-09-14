@@ -12,5 +12,5 @@ for event in events:
   event_start = event.start
 
   if event_start > current_time and event_start < end_of_day:
-    message = Twitter.create_message(event_start, event.title, event.url)
+    message = Twitter.create_message(event_start, event.title, event.location, event.url)
     Twitter.post(message)
